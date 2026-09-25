@@ -19,4 +19,14 @@ public class Formation {
         return this.CoefMatieres.containsKey(matiere);
     }
 
+    public void ajouterMatiere(String matiere,Double coef){
+        this.CoefMatieres.put(matiere,coef);
+    }
+
+    public void supprimerMatiere(String matiere){
+        if (!this.CoefMatieres.containsKey(matiere))
+            throw new IllegalArgumentException("Matiere inexistante");
+        this.CoefMatieres.remove(matiere);
+    }
+
 }

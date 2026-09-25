@@ -10,7 +10,13 @@ public class Formation {
     }
 
     public Double getCoefMatiere(String matiere){
+        if (!this.CoefMatieres.containsKey(matiere))
+            throw new IllegalArgumentException("Matiere inexistante");
         return this.CoefMatieres.get(matiere);
+    }
+
+    public boolean isMatierePresente(String matiere){
+        return this.CoefMatieres.containsKey(matiere);
     }
 
 }

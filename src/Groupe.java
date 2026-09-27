@@ -1,6 +1,4 @@
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Groupe {
     private Set<Etudiant> etudiants;
@@ -62,5 +60,21 @@ public class Groupe {
         for (Etudiant e : this.etudiants)
             moyenne+=e.moyenneGenerale();
         return moyenne/this.etudiants.size();
+    }
+
+    public List<Etudiant> triAlpha() {
+        List<Etudiant> listeCopie = new ArrayList<>(this.etudiants);
+        //on compare e1 et e2 et on utilise compareTo pour comparé leurs noms
+        listeCopie.sort((e1, e2) -> e1.getIdentite().getNom().compareTo(e2.getIdentite().getNom()));
+        return listeCopie;
+    }
+
+    public List<Etudiant> triAntiAlpha() {
+
+        List<Etudiant> listeCopie = new ArrayList<>(this.etudiants);
+        //on compare en inversant e2 et e1 pour avoir l'orde decroissant
+        listeCopie.sort((e1, e2) -> e2.getIdentite().getNom().compareTo(e1.getIdentite().getNom()));
+        return listeCopie;
+
     }
 }

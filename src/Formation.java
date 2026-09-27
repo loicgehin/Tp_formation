@@ -1,32 +1,37 @@
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Formation {
-    private Map<String,Double> CoefMatieres;
+    private Map<String,Double> coefMatieres;
     private String id;
 
-    public Formation(Map<String,Double> cM, String id){
-        this.CoefMatieres=cM;
+    public Formation(String id){
+        this.coefMatieres = new TreeMap<>();
         this.id=id;
     }
 
-    public Double getCoefMatiere(String matiere){
-        if (!this.CoefMatieres.containsKey(matiere))
-            throw new IllegalArgumentException("Matiere inexistante");
-        return this.CoefMatieres.get(matiere);
+    public boolean isMatierePresente(String matiere){
+        return this.coefMatieres.containsKey(matiere);
     }
 
-    public boolean isMatierePresente(String matiere){
-        return this.CoefMatieres.containsKey(matiere);
+    public Double getCoefMatiere(String matiere){
+        if (!this.isMatierePresente(matiere))
+            throw new IllegalArgumentException("Matiere inexistante");
+        return this.coefMatieres.get(matiere);
     }
 
     public void ajouterMatiere(String matiere,Double coef){
-        this.CoefMatieres.put(matiere,coef);
+        this.coefMatieres.put(matiere,coef);
     }
 
     public void supprimerMatiere(String matiere){
-        if (!this.CoefMatieres.containsKey(matiere))
-            throw new IllegalArgumentException("Matiere inexistante");
-        this.CoefMatieres.remove(matiere);
+        if (!this.isMatierePresente(matiere))
+            throw new MatiereInexistanteException("Matiere inexistante");
+        this.coefMatieres.remove(matiere);
+    }
+
+    public boolean estEgal(Formation f){
+        return this.id.equals(f.id);
     }
 
 }

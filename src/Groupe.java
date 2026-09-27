@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -23,11 +24,19 @@ public class Groupe {
         return this.etudiants;
     }
 
-    public Etudiant getEtudiant(String nom, String prenom){
+    public List<Etudiant> getEtudiant(String nom, String prenom){
+        //une liste car plusieurs etudiant peuvent avoir le meme nom et prenom
+        List<Etudiant> liste=new java.util.ArrayList<>();
+        boolean trouve=false;
         for (Etudiant e : this.etudiants)
-            if (e.getIdentite().getNom().equals(nom) && e.getIdentite().getPrenom().equals(prenom))
-                return e;
-        throw new EtudiantNonPresentException("Etudiant non present dans le groupe");
+            if (e.getIdentite().getNom().equals(nom) && e.getIdentite().getPrenom().equals(prenom)) {
+                liste.add(e);
+                trouve=true;
+            }
+        //si pas trouve, on lance une exception disant que l'etudiant n'est pas present
+        if (!trouve)
+            throw new EtudiantNonPresentException("Etudiant non present dans le groupe");
+        return liste;
     }
 
     public Etudiant getEtudiant(String nip){

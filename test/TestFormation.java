@@ -31,7 +31,7 @@ public class TestFormation {
             formation.supprimerMatiere("info");
             fail();
 
-        } catch (IllegalArgumentException e) {
+        } catch (MatiereInexistanteException e) {
         }
 
 

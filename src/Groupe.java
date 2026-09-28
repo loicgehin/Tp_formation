@@ -77,4 +77,11 @@ public class Groupe {
         return listeCopie;
 
     }
+
+    public List<Etudiant> triParMerite(){
+        List<Etudiant> listeCopie = new ArrayList<>(this.etudiants);
+
+        listeCopie.sort((e1,e2)->Double.compare(e2.moyenneGenerale(),e1.moyenneGenerale()));
+        return listeCopie;
+    }
 }

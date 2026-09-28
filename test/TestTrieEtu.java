@@ -18,6 +18,7 @@ class TestTrieEtu {
         f = new Formation("BUT2");
         Grp = new Groupe(f);
 
+        e4 = new Etudiant(new Identite("C", "CC", "444"), f);
         e2 = new Etudiant(new Identite("C", "CC", "445"), f);
         e1 = new Etudiant(new Identite("A", "AA", "456"), f);
         e3 = new Etudiant(new Identite("B", "BB", "496"), f);
@@ -40,6 +41,18 @@ class TestTrieEtu {
         assertEquals("C",trie.get(0).getIdentite().getNom());
         assertEquals("B",trie.get(1).getIdentite().getNom());
         assertEquals("A",trie.get(2).getIdentite().getNom());
+
+    }
+
+    @Test
+    void TestTriMemeNom(){
+        Grp.ajouterEtudiant(e4);
+        List<Etudiant> trie = Grp.triAlpha();
+            assertEquals("A",trie.get(0).getIdentite().getNom());
+            assertEquals("B",trie.get(1).getIdentite().getNom());
+            assertEquals("C",trie.get(2).getIdentite().getNom());
+            assertEquals("C",trie.get(3).getIdentite().getNom());
+
 
     }
 }

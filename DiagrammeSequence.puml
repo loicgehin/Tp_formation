@@ -1,0 +1,21 @@
+@startuml
+participant "main" as main
+participant "e : Etudiant" as etudiant
+participant "f : Formation" as formation
+
+main -> etudiant : moyenneGenerale()
+activate etudiant
+
+loop pour chaque matiere dans les cles
+etudiant -> formation: getCoefMatiere(matiere)
+activate formation
+formation --> etudiant: coefMatiere
+deactivate formation
+etudiant -> etudiant: moyenneMatiere(matiere)
+activate etudiant
+etudiant --> etudiant: moyenne de la matière
+deactivate etudiant
+end
+etudiant --> main: Double (moyenne générale)
+deactivate etudiant
+@enduml

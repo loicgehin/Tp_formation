@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Identite{
+- NIP:Chaine
+- nom:Chaine
+- prenom:Chaine
+}
+class Formation{
+- coeffMatieres: Map
+- id: chaine
++ isMatierePresente(matiere: chaine): booleen
++ ajouterMatiere(matiere: chaine, coef: double)
++ supprimerMatiere(matiere: chaine)
++ estEgal(f: Formation) : booleen
+}
+class Etudiant{
+- notesMatiere:Map
++ ajouterNote(matiere: chaine, note: double)
++ moyenneMatiere(matiere: chaine) : double
++ moyenneGenerale() : double
++ supprimerNote(m: chaine, n: double)
++ compareTo(e: Etudiant) : int
+}
+
+class Groupe{
+- etudiants: Set
+- formation : Formation
++ ajouterEtudiant(etudiant : Etudiant)
++ supprimerEtudiant(etudiant : Etudiant)
++ moyenneMatiere(matiere: chaine): double
++ moyenneGenerale(): double
++ triAlpha() : List
++ triAntiAlpha() : List
++ triParMerite() : List
+}
+
+Etudiant "1" --> "1" Identite : - identite
+Etudiant "*" --> "1" Formation : - formation
+Groupe "*" --> "1" Formation : - formation
+Groupe "1" o-- "*" Etudiant : - etudiants 
+@enduml

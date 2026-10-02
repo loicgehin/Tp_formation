@@ -38,5 +38,5 @@ class Groupe{
 Etudiant "1" --> "1" Identite : - identite
 Etudiant "*" --> "1" Formation : - formation
 Groupe "*" --> "1" Formation : - formation
-Groupe "1" o-- "*" Etudiant : - etudiants 
+Groupe "1" --> "*" Etudiant : - etudiants
 @enduml
